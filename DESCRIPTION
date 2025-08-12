@@ -19,3 +19,4 @@ Suggests:
     rmarkdown
 VignetteBuilder: knitr
 RoxygenNote: 7.2.1
+URL: https://stat-cook.github.io/MRes.Stats/
