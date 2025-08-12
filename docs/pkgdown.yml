@@ -1,0 +1,26 @@
+pandoc: '3.4'
+pkgdown: 2.0.6
+pkgdown_sha: ~
+articles:
+  CaseStudy1: CaseStudy1.html
+  CaseStudy1_Questions: CaseStudy1_Questions.html
+  CaseStudy2_Questions: CaseStudy2_Questions.html
+  CaseStudy3_Questions: CaseStudy3_Questions.html
+  EducationalVideos: EducationalVideos.html
+  EthicsviaTheTrolleyProblem: EthicsviaTheTrolleyProblem.html
+  Frequentist_Bayesian: Frequentist_Bayesian.html
+  MetaAnalysis: MetaAnalysis.html
+  Module1_ScientificMethod: Module1_ScientificMethod.html
+  Module2_DataTypes: Module2_DataTypes.html
+  Module3_DescriptiveStatistics: Module3_DescriptiveStatistics.html
+  Module4_NullHypothesisSignificanceTesting: Module4_NullHypothesisSignificanceTesting.html
+  odds_risk_ratios: odds_risk_ratios.html
+  Probability: Probability.html
+  Probability_Questions: Probability_Questions.html
+  SurveyDesign: SurveyDesign.html
+  T-test_Primer: T-test_Primer.html
+last_built: 2025-08-12T09:04Z
+urls:
+  reference: https://stat-cook.github.io/MRes.Stats/reference
+  article: https://stat-cook.github.io/MRes.Stats/articles
+
