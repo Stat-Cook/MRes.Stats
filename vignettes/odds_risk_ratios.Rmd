@@ -1,0 +1,100 @@
+---
+title: "Risk and Odds Ratios"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Risk and Odds Ratios}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+
+```
+
+## Introduction
+
+Often statisticians deal with binary outcomes, such as "yes" or "no", "success" or "failure". In these cases, we often want to compare the odds or risk of an event occurring between two groups. It is important to understand the difference between odds ratios and risk ratios, as they are used in different contexts and can lead to different interpretations.
+
+## What are Odds and Risks?
+
+### Odds
+
+Odds are a way of expressing the likelihood of an event occurring compared to it not occurring. The odds of an event is defined as:
+
+$$ \frac{\text{The probability an event happens}}{\text{The probability an event does not happen}}$$
+
+For example, if we have a 'fair' coin and toss it 100 times, we expect to get heads 50 times and tails 50 times. The odds of getting heads is:
+
+$$ \frac{50}{50} = 1 $$
+Hence, the odds of getting heads is 1:1, or simply 1.
+
+### Risk
+
+Risk is the probability of an event occurring. It is defined as:
+
+$$ \frac{\text{The number of times an event happens}}{\text{The total number of trials}}$$
+
+For the same coin toss example, the risk of getting heads is:
+
+$$ \frac{50}{100} = 0.5 $$
+
+I.e. an 'Odds' of 1 would be equivalent to a 'Risk' of 0.5.
+
+## Odds Ratio and Relative Risk
+
+Odds and risk alone tell us about the likelihood of an event occurring, but they do not allow us to compare the likelihood of an event between two groups. To do this, we use odds ratios and risk ratios.  These are defined as 'the change in likelihood of an event occurring in one group compared to another group'.  
+
+A common case is comparing the odds or risk of an event occurring in a treatment group compared to a control group.  Say we have a trial of a new drug, and we want to compare the odds or risk of a side effect occurring in the treatment group compared to the control group.  We could have 50 patients in each arm, and the results are as follows:
+
+| Group         | Side Effect | No Side Effect | Total |
+|---------------|-------------|----------------|-------|
+| Treatment     | 20          | 30             | 50    |
+| Control       | 10          | 40             | 50    |
+
+The odds ratio is calculated as:
+
+$$ \text{Odds Ratio} = \frac{\text{Odds in Treatment Group}}{\text{Odds in Control Group}} $$
+$$ \text{Odds in Treatment Group} = \frac{20}{30} = \frac{2}{3} $$
+
+$$ \text{Odds in Control Group} = \frac{10}{40} = \frac{1}{4} $$
+$$ \text{Odds Ratio} = \frac{\frac{2}{3}}{\frac{1}{4}} = \frac{2}{3} \times \frac{4}{1} = \frac{8}{3} \approx 2.67 $$
+
+While the Risk Ratio is calculated as:
+
+$$ \text{Risk Ratio} = \frac{\text{Risk in Treatment Group}}{\text{Risk in Control Group}} $$
+
+$$ \text{Risk in Treatment Group} = \frac{20}{50} = 0.4 $$
+
+$$ \text{Risk in Control Group} = \frac{10}{50} = 0.2 $$
+
+$$ \text{Risk Ratio} = \frac{0.4}{0.2} = 2 $$
+
+In general, the Odds Ratio will have a greater magnitude than the Risk Ratio, especially when the event is common. This is because odds can exceed 1, while risk is always between 0 and 1.  If an even is very rare 
+(e.g. less than 10% of the population), the odds ratio and risk ratio will be very similar.
+
+
+## Why do both exist?
+
+Odds and risks are both useful measures, but they are used in different contexts. Notably, if 
+the study has used 'logistic regression' (which is described ...) to model the binary outcome, 
+then the results will be presented as Odds Ratios as the logistic regression model estimates the log odds of the event occurring.  If the study has used 'Cox proportional hazards' or 'Poisson regression', the results will be presented as risk ratios.
+
+## Summary 
+
+In summary, odds and risk are both measures of the likelihood of an event occurring, but they are used in different contexts. Odds ratios and risk ratios allow us to compare the likelihood of an event occurring between two groups. It is important to understand the difference between these measures, as they can lead to different interpretations of the data. 
+
+When interpreting results, it is crucial to consider the context and the type of analysis used to derive the odds or risk ratios.
+
+## Further Reading
+
+[Risks, Rates and Odds: What’s the Difference and Why Does It Matter?](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8351073/)
+
+[JAMA Guide to Statistics and Methods: Odds Ratios—Current Best Practice and Use](https://www.feinberg.northwestern.edu/sites/firstdailylife/docs/resources-docs/jama.2018.norton.guidetostatisticsandmedicine.odds-ratioscurrent-best-practice-and-use.pdf)
+
+[Odds Ratio Calculator](https://www.medcalc.org/calc/odds_ratio.php)
+
+[Risk Ratio Calculator](https://www.medcalc.org/calc/relative_risk.php)

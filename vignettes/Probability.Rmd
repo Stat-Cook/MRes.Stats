@@ -1,0 +1,221 @@
+---
+title: "Probability"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Probability}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+
+# Probability
+
+## Introduction
+
+Probability is a measure of the likelihood of an event occurring.
+It is based on the concept of uncertainty, and describes the world as made up of 'random variables'.
+A 'random variable' differs from a 'variable' in that it is not a set value, but 
+instead takes on different values with different probabilities.
+
+Probability is a language, so we need to define our terminology:
+
+- A *random variable* is a variable that can take on different values, each with a certain probability.
+- $P(X = x)$ refers to the probability of the random variable $X$ taking on the value $x$.
+- The variable $X$ has an *event space* (which is the set of all possible values it can take).
+- $P(X=x)$ is the probability of the event $X$ taking on the value $x$, and is between 0 and 1.
+- The sum of all probabilities in the event space is 1, i.e., $\sum P(X=x) = 1$ for all $x$ in the event space.
+- Two events are *mutually exclusive* if they cannot occur at the same time
+- Two events are *independent* if the occurrence of one does not affect the probability of the other occurring.
+
+
+The simplest example would be a single toss of a two sided coin.  We can define the random variable, $CoinToss$, as:
+
+- $CoinToss$ has an event space of $\{Heads,~Tails\}$.
+- $P(CoinToss = Heads) = 0.5$
+- $P(CoinToss = Tails) = 0.5$
+
+NB: as with many examples we are simplifying the natural world and assuming the coin 
+will never land on its edge, and that the coin is fair (i.e., the two sides are equally likely).
+
+As the events are *mutually exclusive* (i.e. the coin can't be heads and tails at the same time)  we can 
+we can say that the chance of either occurring is the sum of the individual probabilities:
+
+- $P(CoinToss = \{Heads~or~Tails\}) = P(CointToss = Heads) + P(CointToss = Tails) = 1$
+
+If we were to do this experiment multiple times, we would expect to see approximately half of the tosses being heads, and half being tails.  If we didn't see this, we might question the fairness of the coin, or the randomness of the toss.
+
+## Conditional probability distributions
+
+In reality, random events can be affected by outside behaviours and we might need to 
+discuss the probability of an event *given* some conditions.  The probability of an event given some influencing factors is written as:
+
+$$ P(Event | Influence) $$
+
+or read as the 'probability of an event given the influence'.
+
+For example, if we have a random variable $Weather$ with an event space of $\{Sunny,~Rainy\}$, we might want to know the probability of it being sunny given that it is summer:  
+
+$$ P(Weather = Sunny | Season = Summer) $$
+
+This is a conditional probability distribution, and it describes the probability of the event $Weather = Sunny$ occurring, given that the condition $Season = Summer$ is true.
+To estimate this probability, we could look at historical data to determine how often it was **Sunny** and how 
+often it was **Summer**, with the conditional probability defined as:
+
+$$ P(Weather = Sunny | Season = Summer) = \frac{P(Weather = Sunny, Season = Summer)}{P(Season = Summer)}$$
+
+where $P(Weather = Sunny, Season = Summer$ indicates that both have happened.  Now, we might have a data set of 1000 days - where it was **Summer** for 250 days and *Sunny* for 400 days,  but **Sunny** and  **Summer** 200 only days.  We'd hence say:
+
+$$ P(Weather = Sunny | Season = Summer) = \frac{200}{250} = 0.8$$
+
+Conditional probability gives rise to the formal definition of **independence** as if an event $A$ is independent of a factor $B$ then:
+
+$$ P(A|B) = P(A) $$
+
+If these are not true, then $A$ and $B$ are associated, and by measuring one we can draw inferences about the other.  Though be aware that just because $A$ is not independent of $B$ in a study this doesn't mean that $B$ causes $A$.
+
+## Joint probability distributions
+
+A joint probability distribution describes the probability of two or more random variables occurring together.
+For example, if we have two random variables, $CoinToss1$ and $CoinToss2$, the joint probability distribution is given by:
+
+$$P(CoinToss1 = a, CoinToss2 = b)$$
+
+where $a$ and $b$ are the possible outcomes, with  an event space of $\{HH,~HT,~TH,~TT\}$.
+
+Now, we might assume that $CoinToss1$ and $CoinToss2$ are independent, meaning the outcome of one does not affect the outcome of the other.  By doing this, we can  calculate the probabilities of an outcome by multiplying together the probabilities of the individual  coins:
+
+- $P(CoinToss1 = H, CoinToss2 = H) = P(CoinToss1 = H) \times P(CoinToss2 = H) = 0.5 \times 0.5 = 0.25$
+- $P(CoinToss1 = H, CoinToss2 = T) = P(CoinToss1 = H) \times P(CoinToss2 = T) = 0.5 \times 0.5 = 0.25$
+- $P(CoinToss1 = T, CoinToss2 = H) = P(CoinToss1 = T) \times P(CoinToss2 = H) = 0.5 \times 0.5 = 0.25$
+- $P(CoinToss1 = T, CoinToss2 = T) = P(CoinToss1 = T) \times P(CoinToss2 = T) = 0.5 \times 0.5 = 0.25$
+
+As this is the full space of outcomes, the probabilities sum to 1.
+
+If we were to do this experiment and not see these results, we might question the independence of the coins, or the randomness of the tosses.
+A large part of quantitative research is establishing if two events are independent, or if we have evidence that they are related in some way.  
+
+
+## Types of Probability Distribution
+
+There are many types of probabiltiy distribution, but here we want to introduce four common ones:
+
+- Empirical distribution
+- Binomial distribtuion
+- Normal distribution
+- Poisson distribution
+
+### Empirical distribution
+
+An empirical distribution is a probability distribution that is based on observed data. It is a way of estimating the probability of an event occurring based on historical data.
+Imagine a data set of student heights, e.g 40 students, ranging from 150cm to 200cm.  We 
+could use the data to answer questions like $P(Height > 180cm)$ by counting the number of students who are taller than 180cm and dividing by the total number of students. 
+
+This is a simple way of estimating the probability of an event occurring,  and is often used in exploratory data analysis.  It has the advantage that it doesn't make any assumptions about the form of the data, 
+but can lead to complex calculations, time consuming calculations.
+
+### Binomial distribution
+
+Early statisticians were often gamblers - and hence were interested in how often 
+they were likely to succeed in a game of chance.  This led to the development of the binomial distribution, which is used to model the number of successes in a fixed number of independent trials, each with the same probability of success.  It is called the 'binomial' distribution because 
+it describes situations with two outcomes, such as success or failure, heads or tails, etc.
+
+The binomial distribution is defined by two parameters: the number of trials $n$ and the probability of success $p$. The probability of getting exactly $k$ successes in $n$ trials is given by the formula:
+
+$$ P(X = k) = \binom{n}{k} p^k (1-p)^{n-k} $$
+
+where $\binom{n}{k}$ is the binomial coefficient[ref].
+The closer $p$ is to 0, there will be fewer successes, whereas if it is closer to 1  there will be more successes.
+
+For a given set of data, we might want to estimate $p$ and it's error.  One way to do this is the *maxi
+
+This is  by calculating the maximum likelihood estimate (MLE) of $p$, which is the value of $p$ that maximizes the likelihood of the observed data. The MLE of $p$ is given by:
+
+$$ \hat{p} = \frac{k}{n} $$
+
+where $k$ is the number of successes and $n$ is the number of trials.  The error in the estimate can be calculated using the standard error of the proportion:
+
+$$ SE = \sqrt{\frac{\hat{p}(1-\hat{p})}{n}} $$
+
+which gives us a measure of the uncertainty in our estimate of $p$.
+
+### Normal distribution
+
+The normal distribution (also called the Gaussian distribution, after Carl Friedrich Gauss) is one of the most 
+commonly used distributions in statistics, called the *Normal* because of how wide spread it is. It is a continuous probability distribution that is symmetric about the mean, and has a bell-shaped curve. The normal distribution is defined by two parameters: the mean $\mu$ and the standard deviation $\sigma$.
+
+The mean describes the average location of the data, and the standard deviation describes the spread of the data. If we have two data sets, both described by the normal distribution and one has a 
+higher mean than the other, we can say that the data is on average larger.
+Similarly, is one has a higher standard deviation than the other, we can say that the data is more spread out.
+
+The normal has a useful property relating the mean and standard deviation.  For 
+a given distribution we can expect:
+
+- 66% of the data to sit in the interval $\mu - \sigma$ to $\mu + \sigma$
+- 95% of the data to sit in the interval $\mu - 2\sigma$ to $\mu + 2\sigma$
+- 99% of the data to sit in the interval $\mu - 3\sigma$ to $\mu + 3\sigma$
+
+### Poisson distribution
+
+Sometimes when we are looking at 'successes' or events - it is not within a set number
+of attempts but instead within a set period of time.  For example, we might be interested in the number of emails received in an hour,  the number of cars passing a junction in a day, or 
+how often Prussian soldiers were accidentally killed  due to being kicked by a horse [Das Gesetz der kleinen Zahlen [The law of small numbers] (in German). Leipzig, Germany: B.G. Teubner. pp. 1, 23–25.].
+
+The Poisson distribution is used to model the number of independent events occurring in a fixed interval of time or space,and is defined by a single parameter $\lambda$, which is the average rate of occurrence.  A large value of $\lambda$ implies a faster rate of events, hence more observed events for an equivalent interval.
+
+The probability of observing $k$ events in a fixed interval is given by the formula:
+
+$$ P(X = k) = \frac{\lambda^k e^{-\lambda}}{k!} $$
+
+where $e$ is the base of the natural logarithm (approximately 2.71828), and $k!$ is the factorial of $k$.
+
+For a single set of data, we can approximate $\lambda$ as:
+
+$$ \hat{\lambda} = \frac{n}{T} $$
+
+where $n$ is the number of events observed and $T$ is the total length of intervals in which the events were observed.  The error in the estimate can be calculated using the standard error of the Poisson distribution:
+
+$$ SE = \sqrt{\frac{\hat{\lambda}}{T}} $$
+
+which is a measure of our uncertainty in the estimate of $\lambda$.
+
+## Exponential distribution
+
+Modelling how many events might happen is useful, but sometimes we want to know how
+long will pass between events (e.g. time to failure in a factory).  There are multiple techniques for this
+but the simplest is the 'exponential' distribution - which models the time to event.  The 'exponential' distribution is described by a rate parameter, $\lambda$ (the same as the rate of events), as:
+
+$$ P(T = t) = \lambda e^{-\lambda t} $$
+
+where $T$ is the time to the next event, $t$ is the time elapsed, and $\lambda$ is the rate of events per unit time.  The exponential distribution is memoryless, meaning that the probability of an event occurring in the next time interval is independent of how much time has already passed.
+
+A larger value of $lambda$ means a faster rate of events, and hence a shorter time to the next event.  A smaller value of $lambda$ means a slower rate of events, and hence a longer time to the next event.    
+
+This gives us a measure of the uncertainty in our estimate of $\lambda$.
+Here we have omitted the estimator for the exponential family, but details can be found at [ref]. 
+
+
+
+## Why are these distributions useful?
+
+When we do quantitative research, we often want to make inferences about a population based on a sample of data.  
+Often, this means performing some form of 'regression' analysis (i.e. fitting a model to the data)
+so that we can quantify if a given variable is independent of our outcome allowing for other confounding factors.
+It is the type of probability function that best describes our outcome which decides what sort of regression model 
+is most valid for the data:
+
+- An outcome described by the 'Normal' distribution might employ 'Linear' regression
+- An outcome described by the 'Binomial' distribution might employ 'Binomial Logistic' regression
+- An outcome described by the 'Poisson' distribution might employ 'Poisson' regression
+- An outcome described by the 'Exponential' distribution might employ 'Exponential' regression or a similar 
+time-to-event analysis.
+
+and so in turn if a study uses one of these methods, we should expect the outcome to match.
+
+

@@ -1,0 +1,95 @@
+---
+title: "CaseStudy1_Questions"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{CaseStudy1_Questions}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+# [Find the Answer: Dexamethasone in Hospitalized Patients with Covid-19](https://www.nejm.org/doi/pdf/10.1056/NEJMoa2021436)
+
+# Questions:
+
+Q: What is the primary outcome of the study?
+A: The primary outcome of the study is the time to death
+True: Time to death
+False: Time to recovery
+False: Likelihood to require ventilation
+False: Readmission within 30 days
+
+Q: What is the study design?
+A: The study is a randomized, controlled trial that compares the effects of dexamethasone with standard care in hospitalized patients with Covid-19.
+True: RCT
+False: Observational study
+False: Secondary analysis of data
+False: Case study
+
+Q: What was the treated sample size?
+A: The study treated 2014 patients, having enrolled 6245 patients in total.
+True: 2104 patients
+False: 5000 patients
+False: 9335 patients
+False: 4321 patients
+
+
+Q: What analysis was used to assess the primary outcome?
+A: The primary outcome was assessed using a Cox proportional-hazards model, which compared the time to recovery between the dexamethasone group and the standard care group.
+T: Cox proportional-hazards model
+F: Logistic regression
+F: ANOVA
+F: Linear regression
+
+Q: What subgroup analyses were performed?
+A: 
+
+
+Q: What were the results of the primary outcome?
+A: The results showed that dexamethasone reduced the time to recovery compared to standard care.
+T: Dexamethasone reduced mortality
+F: Dexamethasone increased mortality
+F: Dexamethasone icnreased time to recovery
+F: Dexamethasone reduced time to recovery
+
+
+
+Q: For which patients are dexmethasone recommended?
+A: Dexamethasone is recommended for patients who are receiving respiratory support, including those on mechanical ventilation or oxygen therapy, as it was shown to reduce mortality in these groups.
+T: Patients on mechanical ventilation or oxygen therapy
+F: All hospitalized patients
+F: Patients with severe Covid-19 symptoms only
+F: Patients with mild Covid-19 symptoms
+
+Q: For which patients is dexamethasone not recommended?
+A: Dexamethasone is not recommended for patients who do not require respiratory support, as it did not show a benefit in this group and may even be harmful.  Or those who have other
+contraindications for dexamethasone use.
+T: Patients not requiring respiratory support
+F: Patients with severe Covid-19 symptoms
+F: Patients on mechanical ventilation
+F: All patients with Covid-19
+
+
+Q: How was randomization performed?
+A: Randomization was performed using a computer-generated randomization sequence, which assigned patients to either the dexamethasone group or the standard care group.
+T: Computer-generated randomization sequence
+F: Block Randomization based on hospital ward
+F: Randomization by patient preference
+F: Stratified randomization by age
+
+Q: What exclusions factors were applied?
+A: Patients with either indication for, or contraindication to dexamethasone were excluded, 
+and those being treated at sites without access to dexamethasone.
+T: Patients with indication or contraindication to dexamethasone
+T: Patients being treated at sites without access to dexamethasone
+F: Patients with mild Covid-19 symptoms
+F: Patients with severe Covid-19 symptoms only
+
+
+

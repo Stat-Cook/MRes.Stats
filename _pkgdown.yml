@@ -1,0 +1,12 @@
+url: ~
+template:
+  bootstrap: 5
+
+articles:
+ - title: Some
+   contents:
+   - starts_with("T-test")
+ - title: All
+   contents:
+   - starts_with("*")
+

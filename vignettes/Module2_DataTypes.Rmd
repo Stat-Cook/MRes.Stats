@@ -1,0 +1,259 @@
+---
+title: "Module2_DataTypes"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Module2_DataTypes}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+library(tidyverse)  
+```
+
+# Module 2: Data Types
+
+## Introduction
+
+In the last module we discussed the concepts of the scientific method and 
+highlighted for *empirical science* goes about exploring the world via models,
+and the creation of testable hypotheses.  
+The dominant means of testing these hypotheses is through the collection of data,
+and analysis via statistical methods.
+The overarching idea would be that if we had some outcome we were measuring, $Y$, 
+and some behaviours that we were observing, $X$, we could look to find a relationship:
+
+$$ \hat Y = f(X) $$
+
+where $\hat Y$ is our estimate of the outcome, $Y$, based on the behaviours, $X$, 
+as defined by a function $f$.  The function $f$ can be almost anything - even as simple as 
+'if $X$ is True predict True, otherwise predict False'.
+
+As we are interested in the realm of quantitative analysis, and hence statistics,
+the models we are interested in are mathematical in nature.  
+This means that we need to represent our observations in a way that can be manipulated mathematically.
+We can imagine that if height was measured in 'yay tall', 'he's a big one' and 'short-ish' 
+as opposed to "170cm", "190cm" and 150cm, we would have a hard time doing any sort of
+calculations.  
+
+The process by which we convert the non-numeric natural world into a numeric representation
+is called 'abstraction'.  Making the correct choices in how we perform this abstraction 
+is critical to the validity of our analysis, and hence our findings.  
+
+## Data types
+
+The first step to understanding data types is to understand the variety of observations we 
+might want to make.  Typically, we can think of data as being somewhere on a spectrum between *categorical*
+and *numeric* data.  Categorical data is data that can be divided into distinct groups,
+while numeric data is data that is expressed as a number.
+
+Now - this distinction may feel natural for some data sources, but often this is because we have 
+preconceived ideas as to how it's measured.  Think about colour - we might think of it as categorical 
+(e.g.  'red'/ 'blue'/ 'green') but we could express it as a wavelength of light (where red = 700nm, blue = 450nm, green = 520nm), or based on a colour scale (e.g RGB or CMYK).
+One of these may feel more 'natural' to us - but nature doesn't have a name for 'red' or 'blue', it just has a wavelength of light, and not all colours have a unique wavelength of light (magenta is equal parts red and blue light).  
+The point is that our scale needs to be appropriate given what we wish to conclude, 
+what is feasible within our resources to measure, and what is appropriate for the analysis we wish to perform.
+
+### Nominal variables
+
+Nominal variables are those that can be divided into distinct groups, 
+but where the groups have no inherent order.
+For example, 'colour of a car'   would be a nominal variable when 
+measured as 'red', 'blue', 'green', etc.
+
+Typically we would see demographic data represented as a categorical variable
+(gender, ethnicity, nationality, etc).  We can often see flaws in historical data 
+when they have implied some order to demographic data that is not actually present.
+
+When it comes to representing nominal variables in a mathematical structure the 
+most common approach is what is called 'dummy' or 'proxy' encoding. 
+Using this approach we create a new variable for each category and 
+assign a value of 1 (often used to represent True) if the observation is in that category,
+or 0 (often used to represent False) if it is not.
+
+For example:
+
+``` {r, echo=F, message=F, warning=F}
+set.seed(101)
+data.frame(
+  ID = 1:5, colour =sample(c("red", "blue", "green"), 5, T)
+) |>
+  mutate(
+    IsRed = ifelse(colour == "red", 1, 0),
+    IsBlue = ifelse(colour == "blue", 1, 0),
+    IsGreen = ifelse(colour == "green", 1, 0)
+  ) |> 
+  knitr::kable()
+```
+
+We see that the first observation has colour 'red', so it has a value of 1 for IsRed, and 0 for the other two.
+This approach allows us to represent categorical data in a way that can be used in mathematical models.
+
+As a result of this 'proxy encoding', nominal variables can cause issues when fitting models to data.
+The more variables there are to represent the more complex the model becomes,
+and the more data is required.  Also - we might have a scenario where we have a set of 
+variables each with only one example in the data set and hence lacks generalizability, as 
+well as causing other mathematical issues.
+Where this is the case we might consider changing the 'taxonomy' of the variable 
+(i.e. group together certain values) to create fewer categories.  
+A change of variable can be valid, often using  domain knowledge to group categories together. 
+
+### Ordinal variables
+
+Ordinal variables are those that can be divided into distinct groups,
+but where the groups have an inherent order.
+For example, 'size of a car' could be measured as 'small', 'medium', 'large', 
+where we can see that 'medium' is larger than 'small', and 'large' is larger than 'medium'.
+
+Ordinal data can often present a temptation to use a numeric representation (e.g. pain scales 
+running from '0 - no pain' to '10 - worst pain imaginable') but this can be misleading.
+For example, if we were to use a numeric representation of 'small' = 1, 'medium' = 2, 'large' = 3,
+this would imply (mathematically) that the medium is twice as large as small, and large is three times 
+as large as small.  
+This is i) not necessarily the case, ii) creates issues with modelling, and iii) 
+is unnecessary as we have other ways to represent the data.  
+
+One way to represent ordinal data is to mimic the dummy encoding approach used for nominal data,
+and create a new variable for each category.  This has the added benefit that, should we need a new taxonomy,
+the natural ordering can inform any grouping we may need.  For example:
+
+``` {r, echo=F}
+data.frame(
+  ID = 1:5, PainScore =c("1-2", "3-4", "5-6", "7-8", "9-10")
+) |>
+  mutate(
+    PainScore1_2 = ifelse(PainScore == "1-2", 1, 0),
+    PainScore3_4 = ifelse(PainScore == "3-4", 1, 0),
+    PainScore5_6 = ifelse(PainScore == "5-6", 1, 0),
+    PainScore7_8 = ifelse(PainScore == "7-8", 1, 0),
+    PainScore9_10 = ifelse(PainScore == "9-10", 1, 0)
+  ) |>
+  knitr::kable()
+
+```
+
+An alternative approach is to use the 'average rank' encoding.  This is a concept that underpins 
+certain statistical tests, such as the Mann-Whitney U test, and is based on the idea that
+we can assign a numeric value to each category based on how often each term appears.
+For example, imagine if we had 30 observations of student grades ("A" through "E"):
+
+``` {r, echo=F}
+set.seed(101)
+
+.prob <- c(1,1.5,2,1,0.4)
+values <- sort(
+  sample(LETTERS[1:5], 30, T, prob= .prob / sum(.prob))
+)
+
+matrix(values, ncol=6, byrow=T) |>
+  knitr::kable()
+
+```
+
+We can think of each observation as having a rank (don't worry about ties):
+
+``` {r, echo=F}
+sprintf("%s (%s)", values, 1:30) |>
+ matrix(ncol=6, byrow=T) |>
+  knitr::kable()
+```
+
+and based on this calculate an 'average rank score' for each category:
+
+``` {r, echo=F}
+ave.rank <- data.frame(Grade = values, Rank = 1:30) |> 
+  group_by(Grade) |>
+  summarize(
+    `Average Rank Score` = mean(Rank)
+  )
+
+knitr::kable(ave.rank)
+
+```
+
+So our data is instead:
+
+``` {r, echo=F}
+ave.rank.vec <- ave.rank$`Average Rank Score`
+names(ave.rank.vec) <- ave.rank$Grade
+
+sprintf("%s (%s)", ave.rank.vec[values], values) |>
+  matrix(ncol=6, byrow=T) |>
+  knitr::kable()
+
+```
+
+This approach allows us to represent ordinal data in a way that can be used in mathematical models,
+while still preserving the inherent order of the categories.
+
+### Ratio variables
+
+Ratio variables are a type of data where the difference between two values is meaningful,
+and where there is a true zero point.
+This variable type differs from ordinal variables in that the difference between values is meaningful,
+but it is similar in that the values are ordered.
+For example, height in centimeters is a ratio variable,
+where the difference between 170 cm and 180 cm is the same as the difference between 180 cm and 190 cm.
+
+Unlike the last two variable types where we needed to encode the data into a numeric representation,
+ratio variables are typically represented as numeric values.
+For example, weight in kilograms, distance in meters or number of cars observed at a traffic light
+would all be ratio variables.
+
+The defining feature of ratio variables is that they have a true zero point,
+by which we mean that zero represents the absence of the quantity being measured.
+For example, 0 kg means that there is no weight,
+and 0 cars would have meant that there were no cars observed at the traffic light.
+Because we have a true zero point, it makes sense to talk about ratios or percentages of values 
+(e.g. if person A weighs 80kg and person B weighs 72kg, person B is 90% of person As weight).
+
+
+### Interval variables
+
+Interval variables are a type of data where the difference between two values is meaningful, 
+but where there is no true zero point.
+This variable type are the same as ratio variables in that the values are ordered,
+but they lack a 'true' zero point.
+Much like ratio variables, interval variables  are typically represented as numeric values.
+
+The defining feature of interval variables is that they have no true zero point,
+by which we mean that zero does not represent the absence of the quantity being measured.
+For example, 0 degrees Celsius does not mean that there is no temperature,
+it is simply a point on the temperature scale.  
+Alternatively time is often an interval variable, the difference between 1:00 and 2:00 is the same as between
+15:00 and 16:00, but 0:00 does not mean that there is no time.
+
+The reason we have to pay attention to the difference between interval and ratio variables may become clear by thinking about ratios of interval data. If the temperature today was 20 degrees Celsius, and yesterday it was 10 degrees Celsius, we would be tempted to say that today is twice as hot as yesterday.  But what about in winter 
+when today was 5 degrees Celsius, and yesterday it was -5 degrees Celsius. It doesn't make sense to take the ratio of these two temperatures, because the zero point is not meaningful.  To take this further, if yesterday was -5  degrees Celsius and today was 'twice as hot' would that be -10?  
+
+This is why we need to be careful when using interval data in mathematical models,
+as the lack of a true zero point can lead to misleading conclusions.
+
+### Unusual cases
+
+There are some cases where we might have data that doesn't fit neatly into the above categories, 
+or possibly fits into multiple depending on how we think about it.
+
+- Binary data (e.g. data that is 0/1 or True/False) can be thought of as nominal,
+  ordinal or ratio data depending on how we want to use it.  
+- Likert scales (e.g. 1-5 or 1-7 scales) are often used to measure attitudes or opinions,
+  and can be thought of as ordinal data.  They are often treated as interval data,
+  though this makes a strong assumption about the underlying nature of the data.
+  From a statistical perspective, if we have multiple Likert scale items which correspond 
+  to a similar feature then the sum of these items might be treated as a ratio variable
+  (e.g. a score out of 100).  This is due to the 'Central Limit Theorem' which states that the sum of a large   number of independent random variables will be approximately normally distributed, regardless of the underlying distribution.
+- Percentage data (e.g. 50% or 75%) is a special case of ratio data in that 
+  it may not exceed 100%.  This gives unusual properties, such as person A with an initial
+  score of 20% might triple their score to 60%, but person B with an initial score of 90%
+  can never achieve this level of improvement.
+
+## Summary
+
+
+## Further reading
+
+[Levels of Measurment](https://en.wikipedia.org/wiki/Level_of_measurement)

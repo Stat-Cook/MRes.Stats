@@ -1,0 +1,31 @@
+---
+title: "EducationalVideos"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{EducationalVideos}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+# Educational Videos
+
+## [Crash Course Statistics](https://www.youtube.com/playlist?list=PL8dPuuaLjXtNM_Y-bUAhblSAdWRnmBUcr)
+
+- Parts 1 - 13 outline the concepts of statistical thinking, and give a solid grounding for quantitative thinking.
+- Parts 14 - 36 cover examples of statistical tests, and the mechanisms by which we make inferences.
+- Parts 37 - 45 cover more advanced topics like machine learning, and *big data*
+
+# [Stat Quest](https://www.youtube.com/@statquest)
+
+- This channel covers general introductions to multiple statistical concepts
+- The [Statistics Fundamentals](https://youtube.com/playlist?list=PLblh5JKOoLUK0FLuzwntyYI10UQFUhsY9) playlist gives a solid grounding.
+
+
+

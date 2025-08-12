@@ -1,0 +1,53 @@
+---
+title: "SurveyDesign"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{SurveyDesign}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+#> Discussion of designing a survey, no R code.
+
+# Designing a Survey
+
+## Introduction
+
+
+Designing a survey is a critical step in the research process. A well-designed survey can yield valuable insights, while a poorly designed one can lead to misleading results. Here we will discuss key considerations in survey design ....
+
+## Types of question
+
+When participants respond to a survey, they can answer in different ways. 
+The decision of how to allow participants to respond is key to the design of the survey, 
+the more open the response, the more freedom the participant has to express their views,
+but the harder it may be to analyse the responses.  Conversely, the more closed the response, the easier it is to analyse, but the more likely it is participants will not be able to express their views fully.
+Balancing the need for open and closed responses is a key part of survey design, and 
+makes up a large part of understanding the validity of the questionaire.
+
+### Open questions
+
+Open questions allow participants to respond in their own words.  
+This can provide rich qualitative data, but can be difficult to analyse.
+Examples of open questions include:
+
+- "What do you think about the new policy?"
+- "Describe your experience with our product."
+- "What improvements would you suggest for our service?"
+
+Because the responses are not constrained, it is important the questions are clear and unambiguous.
+Even then, the responses may heavily reflect what the participant wishes to disclose, rather than what the question was focussed on.
+This can lead to a wide range of responses, making analysis challenging.
+
+### Closed questions
+
+
+
+

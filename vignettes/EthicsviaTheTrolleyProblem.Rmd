@@ -1,0 +1,96 @@
+---
+title: "EthicsviaTheTrolleyProblem"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{EthicsviaTheTrolleyProblem}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+#> Description of using the trolley problem to reflect on ethical decisions.  No R code, just discussion
+
+# Ethics via The Trolley Problem
+
+The trolley problem is a thought experiment in ethics that presents a moral dilemma. It involves a scenario where a runaway trolley ('tram' when localized to the UK) is heading towards five people tied to a track. You have the option to pull a lever to divert the trolley onto another track, where it will kill one person instead of five,
+and inaction has the same practical outcome as actively deciding not to pull the lever.
+The dilemma raises questions about utilitarianism, moral responsibility, and the value of human life.
+
+
+The trolley problem is often used to illustrate the conflict between the benefit to the majority and the harm to the minority. It challenges individuals to consider whether it is morally acceptable to take an action that results in harm to one person if it prevents greater harm to many others.
+It  also explores the implications of making decisions that affect the lives of others, and reflect 
+on the ways in which we place value on different aspects of life.
+
+
+A useful approach is to consider the trolley problem in the context of real-world decisions, such as those made in healthcare, public policy, or personal relationships. By examining the ethical implications of these decisions, we can gain a deeper understanding of our values and the principles that guide our actions, and consider 
+not just what we experience making the decision but also as those who are impacted by 
+the decisions.
+
+
+We would, possibly, all agree that at the extremities the ethical decisions is clear:
+if the trolley is heading towards five people and you can pull a lever to divert it to an empty track, then it is ethically correct to pull the lever and save five lives at no cost. 
+
+However, the trolley problem becomes more complex when we consider the implications of our actions and the value we place on individual lives.  For instance (and please note these have no right or wrong answer):
+
+- What if the one person on the track is a child, while the five are elderly?
+- What if the one person is a criminal, while the five are innocent bystanders?
+- ...and the crime was why the trolley was out of control?
+- What if the trolley would only injure the five, but kill the one person?
+- What if instead of death the damage was monetary; for example, the trolley would destroy a factory that employs five people, but you could divert it to destroy a single house owned by one person?
+
+
+Often the trolley problem is introduced to demonstrate *utilitarianism*, the ethical theory that suggests that the best action is the one that maximizes overall happiness or well-being. In this case, pulling the lever to save five lives at the cost of one life is seen as the utilitarian choice, as it results in a net gain of four lives saved.
+But - to what extent do we have the right to make this choice?  
+Ethical decisions made on purely utilitarian grounds can be problematic, as they may overlook the rights and dignity of individuals, and risk imposing a tyranny of the majority.    
+
+
+Hopefully our research will be less risky than the trolley problem, but it is still important to reflect on the ethical implications of our decisions.
+If we were the one person on the track, to what extent are we happy for our options to be 
+decided by either the majority, or some uninvolved minority, of society?
+Consider the modern trend for surveillance, both physical and digital tracking/monitoring. 
+An often cited argument is that 'if you have nothing to hide, then you have nothing to fear' 
+and that the majority of people are happy to be monitored, so it is ethical to do so.
+But, other's take the view that  we have a right to privacy, that surveillance is ineffective 
+in preventing crime, and that it is unethical to impose surveillance on those who do not consent.
+
+
+Such disagreements about ethical decisions are common, and differentiating between 
+our personal ethical beliefs, those of society, and those of the law can be difficult.
+Modern research ethics is designed to help us navigate these dilemmas, and to ensure 
+that we make decisions that are ethical, legal, and respectful of the rights and dignity of individuals.
+Their are numerous historical examples of unethical research (which we will not go into 
+deeply) but which have led to the development of ethical guidelines and regulations
+which often can serve to ensure your research is both ethical and valuable.  
+Having to be self critical about what benefit our research might have, and the likelihood, 
+both to the participants and society, is key and can often lead us to realize there
+are places to offer value we had not considered.
+
+Examples of these overlooked benefits to participants of well designed research are:
+
+- The opportunity to feel valued and heard.
+- The opportunity to work through their own thoughts and feelings without judgement or bias.
+- The opportunity to make new connections with others who share their experiences.
+- The opportunity to feel their experiences may protect and help others.
+- A sense of empowerment and control over their own narrative.
+- Learning from their own data, and how it fits in a wider picture.
+
+
+Achieving the maximum benefit of our work while minimizing the risk to participants is 
+no easy task, and as different people have different values and ethics, it is important to
+engage with a diverse range of stakeholders.
+
+
+
+
+
+
+
+
+
+

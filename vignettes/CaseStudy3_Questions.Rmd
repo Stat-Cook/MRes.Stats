@@ -1,0 +1,21 @@
+---
+title: "CaseStudy3_Questions"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{CaseStudy3_Questions}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+# [Reduced incidence of admissions for myocardial infarction associated with public smoking ban: before and after study](https://www.bmj.com/content/328/7446/977.full.pdf)
+
+
+
+

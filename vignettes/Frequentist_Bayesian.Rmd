@@ -1,0 +1,162 @@
+---
+title: "Frequentist_Bayesian"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Frequentist_Bayesian}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+# A primer on Frequentist and Bayesian statistics - basic difference without too much maths.
+
+# Introduction
+
+Statistics is a branch of mathematics that deals with the collection, analysis, interpretation, presentation, and organization of data. It provides tools for making inferences about populations based on sample data. The discipline is based on core concepts of probability, and notably how we can use probability to make inferences about a population given a sample, and hence make reliable predictions.
+
+Consider a simple example: you want to predict how tall a child will be once they turn 20.  You might estimate a model, like:
+
+$$ \text{Height}_{20} = 10\text{cm} + 1.2\text{Height}_{10}  $$
+which suggests that for every metre of height a child has at age 10, they will grow an additional 0.2 metres by age 20, plus an extra 10 `cm`.  However, a more reliable approach may be to  collect historical data on the heights of children at age 10, and again at age 20, and use that data to estimate the values used in the model.  Statistics is the framework that allows us to do this, and to quantify the uncertainty in our predictions.
+
+How a statistician approaches this problem can vary significantly depending on their statistical philosophy. Two major schools of thought are Frequentist and Bayesian statistics, which differ in how they interpret probability and how they use data to make inferences.
+
+# The Frequentists
+
+Frequentist statistics is the traditional approach to statistical inference. It is grounded 
+in the concept that any parameter we might wish to estimate (like the height of a child at age 20) is a fixed but unknown quantity. The concept goes, if we could repeat the experiment infinitely many times, we could estimate the true value. With every repeat our uncertainty about the parameter decreases, and we can get closer to the true value.
+
+In a practical setting, we can't repeat an experiment infinitely many times, so we use a sample of data to *estimate* the parameter.  Any uncertainty in our estimate is thought to be due to the selection of random samples, i.e. uncertainty in how we select cases rather than variation of the 'true' parameter.
+
+Based on this philosophy, Frequentist statistics can pose questions such as 'how likely is it that the true value of the parameter is zero' - giving rise to 'null hypothesis significance testing' (NHST) and the infamous p-value.  This approach asks 'how likely is it that we would observe the data we have, if a particular hypothesis were true'. Bayesian statistics tries to flip this final statement, and instead ask 'How likely is my hypotheses given the data I have observed'.  
+
+# The Bayesians
+
+Bayesian statistics, conversely, avoids this assumption that there is a single 'true' value for a parameter. Instead, it assumes any parameter will always have an uncertainty associated with it, and that uncertainty can be quantified.  
+
+the Bayesian approach allows for two key mechanisms:
+
+1. **The incorporation of prior knowledge**: while the Frequentist approach only estimates the parameter from the available data, Bayesian statistics allows for the incorporation of existing belief about the value of a parameter before observing the data. 
+2. **Updating beliefs with new data**
+
+
+When it comes to inference and prediction, Bayesian methods are often preferred (if we have believable prior information).  The methods allow for quantification of how likely hypotheses are relative to each other, and are often more intuitive than Frequentist methods.  A common example is the Bayesian 95% Credible Interval as opposed to the Frequetist Confidence Interval  The Bayesian interval is the range with a 95% chance to containthe true parameter, whereas the Frequentist interval is the range in which 95% of such intervals will contain the true parameter in repeated experiments (if it does or does not in a given case is unknown).
+
+# Why isn't it all Bayesian?
+
+While Bayesian statistics has many advantages, it is not without its challenges. The most significant of these is the need to specify a prior distribution, which can be subjective and may lead to different conclusions based on the choice of prior. This subjectivity can be a barrier for some practitioners, especially in fields where objectivity is highly valued.
+
+Additionally, Bayesian methods can be computationally intensive, especially for complex models or large datasets. This has led to the development of various approximation methods and software packages to make Bayesian analysis more accessible.
+
+# A practical example of each
+
+Imagine we have a coin - and want to know if it is fair, i.e. 50:50 heads:tails.
+We decide to do an experiment, and flip the coin 20 times, and observe the outcome.
+Based on the results, we want to make an inference about the fairness of the coin.
+
+The data would look something like:
+
+```{r, echo=F}
+set.seed(123)
+coin_flips <- tibble::tibble(
+  Result = sample(c("Heads", "Tails"), size = 20, replace = TRUE, prob = c(0.3, 0.7))
+)
+
+matrix(coin_flips$Result, ncol=4) |>
+  knitr::kable()
+```
+
+Which is 7 heads out of  20 tries.
+
+## Frequentist approach
+
+In the Frequentist approach, we would use a hypothesis test to determine if the coin is fair. We would set up a null hypothesis that the coin is fair (i.e., the probability of heads is 0.5) and an alternative hypothesis that it is not fair (i.e., the probability of heads is not 0.5).
+
+We would then estimate our value the proportion of heads, $P_H$, from the data, and calculate a p-value 
+([using a common approximation](https://en.wikipedia.org/wiki/Binomial_proportion_confidence_interval#Normal_approximation_interval)) 
+to determine if we can reject the null hypothesis. If the p-value is below a certain threshold (commonly 0.05), we would reject the null hypothesis and conclude that the coin is not fair.
+
+```{r, echo=F}
+
+library(dplyr)
+# Calculate the proportion of heads
+p_hat <- coin_flips %>%
+  summarise(Proportion_Heads = mean(Result == "Heads")) %>%
+  pull(Proportion_Heads)
+
+# Perform a hypothesis test 
+# NB: https://en.wikipedia.org/wiki/Binomial_proportion_confidence_interval#Normal_approximation_interval
+
+n <- nrow(coin_flips)
+p_value <- 2 * pnorm(-abs((p_hat - 0.5) / sqrt(0.5 * (1 - 0.5) / n)))
+
+# Print the results
+cat("Proportion of Heads:", p_hat, "\n")
+cat("P-value:", p_value, "\n")
+if (p_value < 0.05) {
+  cat("Reject the null hypothesis: The coin is not fair.\n")
+} else {
+  cat("Fail to reject the null hypothesis: The coin is fair.\n")
+}
+```
+## Bayesian approach
+
+In the Bayesian approach, we would start with a prior belief about the fairness of the coin.
+For the purposes of this example, we're going to use an empirical prior based on the possible values of $P_{heads}$ (the probability of heads).  We might assume 5 distinct possibilities:
+
+
+| Hypothesis            | Prior probability | Description            | 
+|-----------------------|-------------------|------------------------|
+| $H1: P_{heads} = 0.1$ | 0.2               | Very unfair: 10% heads |
+| $H2: P_{heads} = 0.3$ | 0.2               | Unfair: 30% heads      |
+| $H3: P_{heads} = 0.5$ | 0.2               | Fair: 50% heads        |
+| $H4: P_{heads} = 0.7$ | 0.2               | Unfair: 70% heads      |
+| $H5: P_{heads} = 0.9$ | 0.2               | Very Unfair: 90% heads |
+
+
+We then use *Bayes Formula* to update our prior belief with the observed data. Bayes Formula is:
+
+$$ P(H|D) = \frac{P(D|H) \cdot P(H)}{P(D)} $$
+
+Where:
+- $P(H|D)$ is the posterior probability of the hypothesis given the data.
+- $P(D|H)$ is the likelihood of the data given the hypothesis.
+- $P(H)$ is the prior probability of the hypothesis.
+- $P(D)$ is the marginal likelihood of the data.
+
+Now this may seem scary - but i) $P(H)$ is the prior probability in the table, and ii)
+$P(D)$ is just there to 'normalize' (make the numerators add up to 1), so all we have to calculate is $P(D|H)$ for each hypothesis. Luckily this is relatively simple as it's just 
+the probability of seeing 7 heads in 20 flips given the hypothesis, and can be calculated  using the binomial distribution:
+
+
+| Hypothesis            | Prior probability | Description            |  P(H \| D) | P(H \| D).P(H) |
+|-----------------------|-------------------|------------------------|-----------|---------------|
+| $H1: P_{heads} = 0.1$ | 0.2               | Very unfair: 10% heads | 0.002     | 0.0004        |
+| $H2: P_{heads} = 0.3$ | 0.2               | Unfair: 30% heads      | 0.16      | 0.033         |
+| $H3: P_{heads} = 0.5$ | 0.2               | Fair: 50% heads        | 0.074     | 0.015         |
+| $H4: P_{heads} = 0.7$ | 0.2               | Unfair: 70% heads      | 0.001     | 0.0002        |
+| $H5: P_{heads} = 0.9$ | 0.2               | Very Unfair: 90% heads | < 0.0001  | << 0.0001     |
+
+
+Where $P(D)$  is the sum of our $P(H | D).P(H)$ column.  Dividing through we can upate our model as:
+
+
+| Hypothesis            | Posterior probability | Description            |
+|-----------------------|-----------------------|------------------------|
+| $H1: P_{heads} = 0.1$ | 0.008                 | Very unfair: 10% heads |
+| $H2: P_{heads} = 0.3$ | 0.68                  | Unfair: 30% heads      |
+| $H3: P_{heads} = 0.5$ | 0.30                  | Fair: 50% heads        |
+| $H4: P_{heads} = 0.7$ | 0.004                 | Unfair: 70% heads      |
+| $H5: P_{heads} = 0.9$ | <0.0001               | Very Unfair: 90% heads |
+
+
+This tells us that given the data we have observed, the most likely hypothesis is that the coin is unfair with a 30% chance of heads.  We can also see that the hypothesis that the coin is fair (50% heads) is still quite likely, but less so than the 30% heads hypothesis.
+
+# Conclusion
+

@@ -1,0 +1,250 @@
+---
+title: "Module1_ScientificMethod"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Module1_ScientificMethod}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+# Module 1: Scientific Method
+
+Before we think about how to answer questions, we need to think about what questions we can ask. The scientific method is a systematic way of thinking about the world that allows us to ask questions and find answers.  By learning to think like scientist, we can understand how to ask questions that can be answered with data, and how to interpret the answers we get.
+
+## The Scientific Method - Steps
+
+The basic steps of the scientific method are:
+
+1. Observe
+2. Question
+3. Hypothesize
+4. Test
+5. Analyse
+6. Conclude
+7. Critique and Communicate
+
+The core principal is that science is the process by which we systematically ask questions and learn about the 
+natural world - even though we often think of science as the knowledge we have gained, it is really the process that makes work *scientific*.  
+
+Many of our modern thoughts of what it means to be scientific emerged in the scientific revolution of the 16th 
+and 17th centuries, when *natural philosophers* (those who study the natural world, free of the supernatural) began to use systematic observation, measurement, and experimentation to test hypotheses and develop theories.
+It focussed on empirical evidence, which is information that can be verified through observation or experimentation, rather than relying on intuition, speculation or tradition.  
+
+## Nature as a System
+
+The scientific method is based on the idea that nature is a system, and that we can understand it by observing and measuring its components and their interactions.  This means that we can ask questions about how things work, and test our ideas by manipulating the system and observing the results.
+Even further, it relies on the idea that the natural world is repeatable, reliable and (sometimes) deterministic
+i.e. that cause follows effect, and that the same cause will produce the same effect. 
+
+The theory goes that by studying a system, we can learn its behaviours and rules and use that knowledge to predict how it will behave in the future.  Based on this knowledge, we can predict how a system will 
+behave in the future, and use that knowledge to make decisions about how to interact with it.
+Classic examples of this are the laws of physics, and agricultural sciences - one of which allows
+us to understand and harness the forces of nature, and the other which allows us to 
+feed society by optimising the growth of crops.
+
+### Nature as a noisy system
+
+Many early thoughts of nature were born out of a religious tradition that saw nature as a perfect system, and that the laws of nature were immutable.  Many statistical techniques assume that their is some hidden truth 
+that can be learned by observation and experimentation, and that the data we collect will reveal that truth.  This is often referred to as the *deterministic* view of nature, where all variation can be explained 
+if we could perfectly measure all the factors that influence a system.  
+
+However, as we have learned more about the natural world, we have come to understand that it is not always so simple.  Nature is often noisy, meaning that there are many factors that can influence the outcome of an experiment or observation, and that these factors can be difficult to control or predict.  From disciplines such as statistical
+mechanics we have learned that many systems are not deterministic, but rather their is a degree of 
+randomness that influences the outcome.  This means that even if we could perfectly measure all the factors that influence a system, we could enumerate the likelihood of an 
+outcome but not predict it with certainty.  This is often referred to as the *stochastic* view of nature, where the outcome of an experiment or observation is influenced by random factors that cannot be controlled or predicted.
+
+As to which of these is true; in a practical sense we don't have to care.  There is a 
+practical limit to how much resource we are willing to invest in understanding or controlling a system, and we can often get enough information to make decisions without knowing the full truth.  This is why we use statistical techniques to analyse data, as they allow us to make inferences about the system without having to know everything about it.
+
+### An example - Isaac Newton's Apple
+
+Isaac Newton is credited with the mother of scientific headaches -  an apple falling from a 
+tree that struck him upon the head and the Theory of Gravity (the force which stops 
+object from flying into space) was born.  Humanity love a story - so it shouldn't shock you 
+to know the apple did not in fact strike Newton, nor was it some lightning bolt of divine 
+intervention which gifted unto his brain the fully formed concept of Gravity.
+What it did do, was cause a young man to begin asking questions.  
+
+The observation of an apple falling from a tree led Newton to question why it fell straight down, rather than sideways or upwards.  Would it always fall and, if so, at what speed?  
+His questions led him to hypothesise; 
+
+* for an object to fall there had to be a force 
+* that the strength of this force would depend on the mass of the object, 
+and the distance between them
+
+At this time we already had some ideas of attraction; as early as 600BC Thales of Miletus 
+observed that rubbing amber with fur caused it to attract light objects.  But the 
+prevailing idea before Newton was Aristotle's concept that objects were attracted to the 
+ground because it was their natural place in the cosmos - their was no force acting on them, they simply wanted to be there.  
+
+So - Newton needed to design tests that could not only support his hypothesis, but also disprove the
+prevailing idea.  He needed to show that there was a force acting on the apple, and that this force was proportional to the mass of the apple and the distance between it and the Earth.  In fact, he wasn't just interested in 
+the Theory of Apple-Terra Attraction, but in the Theory of Attraction between all objects in the universe.  
+He went about this by testing his hypotheses on observable data - such as the motion of planets, the tides, and  
+Galileo's earlier observations of objects in free-fall.
+
+Newton analyzed the data from this variety of data sources, and concluded:
+
+- between any two objects with mass there exists an attractive force
+- the force is stronger if the objects posses more mass
+- the force is weaker if the objects are further apart
+- this force is universal - be it between the earth and an apple, planetary bodies, or 
+two people.
+
+and because of the dependence on, and scalling with, an objects mass he termed 
+this force to be an objects 'gravitas' - the Latin for 'weight' or 'heaviness'. 
+All of this work was published (alongside his law's of motion )
+in the *Philosophiæ Naturalis Principia Mathematica* 
+(Mathematical Principles of Natural Philosophy, often referred to as the Principia) 
+in 1687.
+
+The work became so fundamental to our understanding of the natural world that 
+it makes up core components of classical physics as we still understand it.  But - 
+as is often the case in science, it wasn't the full picture.  
+Newton's laws of motion and gravity were later shown to be incomplete by Einstein's theory of relativity, which showed that gravity is not a force, but rather a curvature of space-time caused by mass.  
+Newton's laws hold - but only in special cases (though the special case here refers to most of the world
+in which we live and make practical use of).  They are what we call an *approximation* of the truth, and are useful for making predictions about the motion of objects in our everyday lives.  This is a common theme in science - we often find that our theories are not the full truth, but rather an approximation that is useful for making predictions about the world.
+
+Einstein's work showed Newton's theory to be inaccurate in much the way Newton showed Aristotle 
+to be incorrect.  But, because Newton's work has grounded in solid analytical evidence, 
+it is still a useful tool to this day - but like all tools it is useful when the problem
+is within the boundaries of what it was designed for.  This will become a common theme 
+as you explore research, and you will learn that the scientific method is not about finding the one true answer, but rather about finding the best answer we can with the information we have available.  There will
+be places our findings apply to, or may readily generalize to, and there will be places where they do not.  This is why we need to be critical of our work, and communicate our findings clearly so that others can understand their limitations.  It doesn't make someone a bad scientist to be wrong, or to argue passionately 
+that their interpretation is accurate - it makes them a good scientist to be able to
+recognise when they are wrong, and to be able to change their mind in the face of new evidence.  This is the essence of the scientific method - it is a process of continuous learning and improvement, rather than a static set of rules or beliefs.
+
+## What do we look for in Research Questions and Hypotheses?
+
+Not everyone will be *struck* by inspiration the way Newton was, but we can all observe places 
+in the world where we face problems.  They may be problems that effect us personally, a community 
+we are part of, or a group we wish to help (inclusive of wanting to help  because
+we will be remunerated).  The question then is made up of two components:
+
+1. What is the problem
+2. Who does it effect
+
+from there we want to think is our question:
+
+- Clear and concise.  Ideally your question will make sense without a dictionary 
+  or *too* much of the secret language of your discipline.
+- Specific.  Outcomes with broad subjective judgements, e.g. 'good', are less meaningful than 
+  more precise measures.
+- Relevant.  Can you foresee impact from the work - a positive change for society if you answer 
+  the  question.
+- Researchable.  Is it feasible for the tools, techniques and data needed 
+  to exist within the time frame.
+- Ethical.  Could the positive benefit of the work outweigh any potential harm it may cause,
+  either in the process of doing the work or from the knowledge generated.
+
+These points aren't objective - each depend on the context of your work.  The specific 
+research question we are working on may be highly focussed, but contribute to a broader 
+research question which we use when doing outreach.  
+Consider a biochemist developing new drugs.  Their specific research question may be highly 
+specific, e.g. 'In what proportion of cases does the addition of the 
+McGuffin substrate inhibit long chain polymerisation', but the broader research 
+question may be 'How can we develop new drugs to treat disease X?'. 
+
+So - how do we go about shaping a research question?  Assuming you have identified 
+the problem and population, my advise is to not be afraid of writing a bad question; 
+ write down the question as you think about it, and ask yourself if it meets the criteria above.  
+ If it doesn't, try to rephrase it until it does - self critique is critical to 
+ growing as a researcher.  The key is to keep iterating on your question until you have a research question
+ that you can defend as clear, relevant and ethical.
+
+### What might this look like?
+
+Let's say you are interested in the problem of social media exposure on young people.
+You might start with a question like:
+
+> How does social media exposure affect young people?
+
+This is a good start, but it is not specific enough.  We need to think about what we mean by  "young people". 
+
+We might rephrase the question to be more specific:
+
+> How does social media exposure affect the mental health of young people aged 13-18?
+
+We can do this for several features:
+
+1. What are we defining as social media?  And what do we mean by exposure?  
+2. What do we mean by mental health?  Are we looking at specific conditions, or general well-being?
+3. What do we mean by affect?  Is it there feelings of being on social media, or the way it changes their behaviour towards others?
+
+We can then refine the question further:
+
+> How does exposure to social media platforms such as Instagram and TikTok affect the 
+prevalence of depression and anxiety in young people aged 13-18?
+
+More clear, concise and focussed - and so easier to explain and defend as relevant.  
+Now - can we research this question in an ethical way?  
+We could:
+
+1. Enroll young people in a study and give them set quantities of social media exposure, 
+   and then measure their anxiety and depression scores before and after the study.
+2. Generate new data via surveys of young people that ask about their social media use and mental health.
+3. Conduct interviews with young people about their experiences with social media and mental health.
+4. Use existing data from social media platforms and mental health surveys to analyse the relationship between the two.
+
+All of these approaches have their own ethical and legal considerations, and we would need to think about how to ensure that we are not causing harm to the participants in our study.  
+What is ethical will depend on the context of the research, and we will need to consider the potential risks and benefits of our research before we can proceed.
+The greater the proposed benefit, the more risk we might choose to take on - but we must always be mindful of the potential harm that our research may cause.  This is why ethics committees exist, to help us navigate these complex issues and ensure that we are conducting our research in a responsible and ethical manner.
+
+### What is a Hypothesis?
+
+A hypothesis is a testable statement that predicts the relationship between two or more variables. It is a specific, testable prediction about what you expect to find in your research. A good hypothesis should be clear, concise, specific, and testable. 
+
+Hypotheses can be layered, expanding in specifitiy or complexity.
+Consider Newton's work as an example;  we may start with a simple hypothesis:
+
+> An apple from this tree will always fall straight down.
+
+We may add specifitiy:
+
+> An apple from this tree will always fall straight down with acceleration 
+dependent on it's mass.
+
+Or generalizability:
+
+> Any object dropped from this tree will always fall straight down.
+
+Now; these hypotheses are somewhat testable - we can drop an apple and see if it falls straight down, and we can measure the acceleration of the apple as it falls.  But at what point do we have enough evidence to be certain?
+In quantitative research, we use a framework called *Null Hypothesis Significance Testing* (we'll go into this in more detail later)  which typically assumes that our cause has no effect on our outcome.
+
+Within this framework we might say:
+
+> An apple from this tree cannot not fall to the earth.
+
+It goes against our natural belief, but it means that if we observe even one apple 
+fall to the earth we know it is wrong.  As we are wrong, and can evidence it, 
+we can learn.  We can say that there is evidence against 'apples cannot fall to the earth', 
+and hence imply that apples will fall to the earth.  
+
+This might strike you as a silly example - we come with a pre-conceived idea that 
+apples will fall to the earth.  We might have observed it, or implied it, from past experience.
+But this is the nature of scientific thinking - rigorous clarity of what we do know, can know,
+and might know.
+
+If our hypothesis was vaguer:
+
+> An apple from this tree might not fall to the earth
+
+what do we  learn from the data?  That it might be true or it might be false - 
+a weak foundation for any future steps.  This approach often sits poorly in peoples heads,
+they don't want to be wrong.  They don't want to bet against preconceptions.
+They don't want to work in absolutes.  But, by being absolute we can invoke the  simple 
+thought:
+
+> When you have eliminated all which is impossible, then what remains, however improbable 
+must be the truth.
+
+
+
+

@@ -1,0 +1,62 @@
+---
+title: "CaseStudy2_Questions"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{CaseStudy2_Questions}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+# [Lifestyle trajectories and ischaemic heart diseases: a prospective cohort study in UK Biobank](https://academic.oup.com/eurjpc/article/30/5/393/6967915)
+
+Q: What is the primary outcome of the study?
+A: The primary outcome of the study is the incidence of ischaemic heart disease (IHD) events, which include myocardial infarction, angina, and coronary revascularization.
+
+
+
+
+Q: What is the study design?
+A: The study is a prospective cohort study that follows participants over time to assess the relationship between lifestyle trajectories and the incidence of IHD.
+T: Prospective cohort study
+F: Retrospective cohort study
+F: Cross-sectional study
+F: Randomized controlled trial
+
+Q: What was the sample size?
+A: The study included 502,643 participants from the UK Biobank, with a mean age of 56.5 years at baseline.
+
+
+Q: What were the inclusion/ exclusion criteria?
+A: Participants were included if they were aged 40-69 years at baseline, had complete data on lifestyle factors, and had no history of IHD at baseline.
+
+
+Q: What analysis was used to assess the primary outcome?
+A: The primary outcome was assessed using Cox proportional hazards models, which estimated the hazard ratios for IHD events based on different lifestyle trajectories.
+
+
+Q: What secondary analyses were performed?
+A: 
+
+
+Q: What confounding factors were adjusted for?
+A: 
+
+
+Q: Were any assumption tests reported?
+A: Yes, the authors reported that the proportional hazards assumption was met for the Cox models used in the analysis, havign tested using Schoenfeld residuals.
+
+
+Q: How much missing data was there?
+A: The study reported that 6.2% of the data were missing for the lifestyle factors.
+
+Q: How was the missing data handled?
+A: Multiple imputation was used to handle missing data, with 20 imputed datasets created for the analysis.
+
+
